@@ -2,6 +2,5 @@ Changes
 MANIFEST
 Makefile.PL
 NVDefined.pm
-NVDefined.xs
 README
 test.pl

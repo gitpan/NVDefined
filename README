@@ -1,39 +1,9 @@
 This is the README file for NVDefined
 
-NVDefined is an XS extension that implements Non-Vivifying defined and
-exists functions (NVDefined and NVExists, respectively).
+NVDefined has been replaced by Hash::NoVivify. This module serves only
+as a wrapper for that.
 
-When used on a hash, the exists() and defined() functions will create
-(vivify) entries in a hash in order to evaluate the function.
-
-For instance, the code
-
-    %a = (a => 1, b=> 2);
-    print "Doesn't exist\n" unless exists($a{c});
-    print "Also Doesn't exist\n" unless exists($a{c}->{d});
-    print "Oh, my, not good\n" if exists($a{c});
-
-will print out:
-
-    Doesn't exist
-    Also Doesn't exist
-    Oh, my, not good
-
-The NVDefined module provides two functions, NVDefined() and
-NVExists(), which avoid this, at the cost of a slightly convoluted
-syntax. Both functions take a reference to a hash, followed by a list
-of descending keys defining the hash entry to be investigated.
-
-To build and install this extension, the usual
-
-    perl Makefile.PL
-    make
-    make test
-    make install
-
-will suffice.
-
-NVDefined requires perl5.004, and is
+NVDefined requires perl5.004, and Hash::NoVivify 0.01, and is
 
 Copyright(c) 1999 Brent B. Powers. All rights reserved. This program
 is free software, you may redistribute it and/or modify it under the

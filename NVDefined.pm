@@ -4,10 +4,8 @@ use strict;
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
 require Exporter;
-require DynaLoader;
-require AutoLoader;
 
-@ISA = qw(Exporter DynaLoader);
+@ISA = qw(Exporter);
 # Items to export into callers namespace by default. Note: do not export
 # names by default without a very good reason. Use EXPORT_OK instead.
 # Do not simply export all your public functions/methods/constants.
@@ -15,12 +13,21 @@ require AutoLoader;
 	     NVExists
 	     NVDefined
 	    );
-$VERSION = '0.01';
 
-bootstrap NVDefined $VERSION;
+use Hash::NoVivify;
 
+$VERSION = '0.02';
 
-1;
+sub NVExists {
+    my($hashref) = shift;
+    Hash::NoVivify::Exists($hashref, @_);
+}
+
+sub NVDefined {
+    my($hashref) = shift;
+    Hash::NoVivify::Defined($hashref, @_);
+}
+
 __END__
 
 =head1 NAME
@@ -43,29 +50,7 @@ NVDefined - Perl extension for non-vivifying exists and defined functions
 
 =head1 DESCRIPTION
 
-When used on a hash, the exists() and defined() functions will create
-entries in a hash in order to evaluate the function.
-
-For instance, the code
-
-
-The code
-
-    %a = (a => 1, b=> 2);
-    print "Doesn't exist\n" unless exists($a{c});
-    print "Also Doesn't exist\n" unless exists($a{c}->{d});
-    print "Oh, my, not good\n" if exists($a{c});
-
-will print out:
-
-    Doesn't exist
-    Also Doesn't exist
-    Oh, my, not good
-
-The NVDefined module provides two functions, NVDefined() and
-NVExists(), which avoid this, at the cost of a slightly convoluted
-syntax. Both functions take a reference to a hash, followed by a list
-of descending keys defining the hash entry to be investigated.
+This module has been superseded by Hash::NoVivify, qv.
 
 =head1 AUTHOR
 
